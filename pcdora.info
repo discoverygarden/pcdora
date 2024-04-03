@@ -1,5 +1,0 @@
-name: 'pcdora'
-name = Providence College Customizations
-description = Provides customizations for the pc i8 installation
-core_version_requirement: ^8 || ^9 || ^10
-package: 'discoverygarden'
