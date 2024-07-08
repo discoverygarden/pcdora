@@ -1,0 +1,6 @@
+---
+services:
+  pcdora.twig.edtf_formatter:
+    class: Drupal\pcdora\TwigExtension\EdtfFormattingExtension
+    tags:
+      - { name: twig.extension }
