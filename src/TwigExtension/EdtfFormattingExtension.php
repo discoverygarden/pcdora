@@ -2,7 +2,9 @@
 
 namespace Drupal\pcdora\TwigExtension;
 
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use EDTF\EdtfFactory;
+use Psr\Log\LoggerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -10,6 +12,17 @@ use Twig\TwigFunction;
  * Twig extension class.
  */
 class EdtfFormattingExtension extends AbstractExtension {
+
+  use DependencySerializationTrait;
+
+  /**
+   * Constructor.
+   */
+  public function __construct(
+    protected LoggerInterface $logger,
+  ) {
+    // No-op.
+  }
 
   /**
    * {@inheritDoc}
@@ -42,7 +55,12 @@ class EdtfFormattingExtension extends AbstractExtension {
     $parser = EdtfFactory::newParser();
     $parse_result = $parser->parse($value);
     if (!$parse_result->isValid()) {
-      return "Failed to parse EDTF ({$value}): {$parse_result->getErrorMessage()}";
+      $this->logger->info('Failed to parse EDTF value {value}: {message}', [
+        'value' => $value,
+        'message' => $parse_result->getErrorMessage(),
+      ]);
+      // Return the original, unmodified value.
+      return $value;
     }
 
     $edtf = $parse_result->getEdtfValue();
@@ -53,7 +71,14 @@ class EdtfFormattingExtension extends AbstractExtension {
       $structured_humanizer = EdtfFactory::newStructuredHumanizerForLanguage($langcode, $fallback_langcode);
       $humanized_structure = $structured_humanizer->humanize($edtf);
       if (!$humanized_structure->wasHumanized()) {
-        return "Failed to humanize EDTF ({$value}): {$humanized_structure->getContextMessage()}";
+        $this->logger->info('Failed to humanize EDTF value {value} with {language} (fallback: {fallback}): {message}', [
+          'value' => $value,
+          'language' => $langcode,
+          'fallback' => $fallback_langcode,
+          'message' => $humanized_structure->getContextMessage(),
+        ]);
+        // Return the original, unmodified value.
+        return $value;
       }
       $humanized = $humanized_structure->getSimpleHumanization();
     }
