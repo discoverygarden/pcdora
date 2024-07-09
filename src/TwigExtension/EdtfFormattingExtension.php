@@ -28,7 +28,7 @@ class EdtfFormattingExtension extends AbstractExtension {
    * @param string $value
    *   The EDTF value to be formatted.
    * @param string $langcode
-   *   The language with which to format.
+   *   The language with which to try to format.
    * @param string $fallback_langcode
    *   The fallback language code.
    *
