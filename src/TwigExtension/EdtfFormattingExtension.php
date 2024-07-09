@@ -2,14 +2,18 @@
 
 namespace Drupal\pcdora\TwigExtension;
 
-use Drupal\Component\Render\MarkupInterface;
-use Drupal\Core\Render\Markup;
 use EDTF\EdtfFactory;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
+/**
+ * Twig extension class.
+ */
 class EdtfFormattingExtension extends AbstractExtension {
 
+  /**
+   * {@inheritDoc}
+   */
   public function getFunctions() {
     $functions = parent::getFunctions();
 
@@ -18,7 +22,23 @@ class EdtfFormattingExtension extends AbstractExtension {
     return $functions;
   }
 
-  public function formatEdtf(string $value, string $langcode = 'en', string $fallback_langcode = 'en') : \Stringable|string {
+  /**
+   * Function callback; format an EDTF value to be human-readable.
+   *
+   * @param string $value
+   *   The EDTF value to be formatted.
+   * @param string $langcode
+   *   The language with which to format.
+   * @param string $fallback_langcode
+   *   The fallback language code.
+   *
+   * @return string
+   *   The human-readable representation.
+   */
+  public function formatEdtf(string $value, string $langcode = 'en', string $fallback_langcode = 'en') : string {
+    if (empty($value)) {
+      return '';
+    }
     $parser = EdtfFactory::newParser();
     $parse_result = $parser->parse($value);
     if (!$parse_result->isValid()) {
