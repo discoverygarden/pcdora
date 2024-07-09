@@ -6,8 +6,8 @@
  */
 
 /**
-* Implements hook_preprocess_node__islandora_object().
-*/
+ * Implements hook_preprocess_node__islandora_object().
+ */
 function pcdora_preprocess_node__islandora_object(&$variables) {
   // Disable right click on video.
   $variables['#attached']['library'][] = 'pcdora/pcdoravideo';
