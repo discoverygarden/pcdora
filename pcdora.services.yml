@@ -1,0 +1,11 @@
+---
+services:
+  logger.channel.pcdora.twig_extension:
+    parent: logger.channel_base
+    arguments: [ 'pcdora_twig_extension' ]
+  pcdora.twig.edtf_formatter:
+    class: Drupal\pcdora\TwigExtension\EdtfFormattingExtension
+    arguments:
+      - '@logger.channel.pcdora.twig_extension'
+    tags:
+      - { name: twig.extension }
