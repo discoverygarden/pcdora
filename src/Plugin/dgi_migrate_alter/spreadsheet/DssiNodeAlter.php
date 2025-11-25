@@ -4,6 +4,7 @@ namespace Drupal\pcdora\Plugin\dgi_migrate_alter\spreadsheet;
 
 use Drupal\dgi_migrate_alter\Plugin\MigrationAlterBase;
 use Drupal\dgi_migrate_alter\Plugin\MigrationAlterInterface;
+use Drupal\Core\Annotation\Translation;
 
 /**
  * Alter for dssi_node migration.
@@ -37,18 +38,14 @@ class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterfac
       'edition',
       'issuance',
       'frequency',
-      'date_text',
+      'date_note',
     ];
 
     $process['field_origin_information'][2]['values']['field_date_note'] = [
       [
         'plugin' => 'skip_on_empty',
         'method' => 'process',
-        'source' => 'parent_value/date_text',
-      ],
-      [
-        'plugin' => 'dgi_migrate.process.explode',
-        'delimiter' => '^',
+        'source' => 'parent_value/date_note',
       ],
     ];
   }
