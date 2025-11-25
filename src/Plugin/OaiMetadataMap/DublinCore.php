@@ -8,7 +8,7 @@ use Drupal\dgi_standard_oai\Plugin\OaiMetadataMap\DgiStandard;
  * OAI implementation for the PC metadata profile.
  *
  * @OaiMetadataMap(
- *  id = "pc_dublin_core",
+ *  id = "pc_standard_oai",
  *  label = @Translation("DPLAVA (PC)"),
  *  metadata_format = "mdRecord",
  *  template = {
@@ -19,7 +19,7 @@ use Drupal\dgi_standard_oai\Plugin\OaiMetadataMap\DgiStandard;
  *  }
  * )
  */
-class DublinCore extends DgiStandard {
+class PcStandard extends DgiStandard {
 
 
   /**
