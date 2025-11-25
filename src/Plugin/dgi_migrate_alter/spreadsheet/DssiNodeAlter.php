@@ -41,13 +41,9 @@ class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterfac
       'date_note',
     ];
 
-    $process['field_origin_information'][2]['values']['field_date_note'] = [
-      [
-        'plugin' => 'skip_on_empty',
-        'method' => 'process',
-        'source' => 'parent_value/date_note',
-      ],
-    ];
+    // Using frequency as a template.
+    $process['field_origin_information'][2]['values']['field_date_note'] = $process['field_origin_information'][2]['values']['field_frequency'];
+    $process['field_origin_information'][2]['values']['field_date_note'][0]['source'] = 'parent_value/date_note';
   }
 
 }
