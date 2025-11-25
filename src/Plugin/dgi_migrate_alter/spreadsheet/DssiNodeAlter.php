@@ -15,14 +15,12 @@ use Drupal\dgi_migrate_alter\Plugin\MigrationAlterInterface;
  *   migration_id = "dssi_node"
  * )
  */
-class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterface
-{
+class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function alter(array &$migration): void
-  {
+  public function alter(array &$migration): void{
     $process =& $migration['process'];
 
     $process['field_origin_information'][2]['values']['field_date_note'] = [
