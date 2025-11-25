@@ -4,4 +4,6 @@ description: 'Providence College Customizations'
 core_version_requirement: ^8 || ^9 || ^10
 package: 'discoverygarden'
 dependencies:
-  - drupal:migrate
+ - drupal:migrate
+ - drupal:dgi_standard_oai
+ - drupal:rest_oai_pmh
