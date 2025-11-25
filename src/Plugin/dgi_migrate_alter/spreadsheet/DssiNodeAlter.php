@@ -23,6 +23,23 @@ class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterfac
   public function alter(array &$migration): void {
     $process =& $migration['process'];
 
+    $process['field_origin_information'][1]['keys'] = [
+      'event_type',
+      'place',
+      'date_created',
+      'date_issued',
+      'date_captured',
+      'date_valid',
+      'date_modified',
+      'other_date',
+      'copyright_date',
+      'publisher',
+      'edition',
+      'issuance',
+      'frequency',
+      'date_text',
+    ];
+
     $process['field_origin_information'][2]['values']['field_date_note'] = [
       [
         'plugin' => 'skip_on_empty',
