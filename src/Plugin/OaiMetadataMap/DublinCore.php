@@ -5,12 +5,12 @@ namespace Drupal\pcdora\Plugin\OaiMetadataMap;
 use Drupal\dgi_standard_oai\Plugin\OaiMetadataMap\DgiStandard;
 
 /**
- * OAI Dublin Core mapping for PC.
+ * OAI implementation for the PC metadata profile.
  *
  * @OaiMetadataMap(
  *  id = "pc_dublin_core",
- *  label = @Translation("OAI Dublin Core (PC)"),
- *  metadata_format = "oai_dc",
+ *  label = @Translation("DPLAVA (PC)"),
+ *  metadata_format = "mdRecord",
  *  template = {
  *    "type" = "module",
  *    "name" = "rest_oai_pmh",
