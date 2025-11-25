@@ -20,7 +20,7 @@ class DssiNodeAlter extends MigrationAlterBase implements MigrationAlterInterfac
   /**
    * {@inheritdoc}
    */
-  public function alter(array &$migration): void{
+  public function alter(array &$migration): void {
     $process =& $migration['process'];
 
     $process['field_origin_information'][2]['values']['field_date_note'] = [
