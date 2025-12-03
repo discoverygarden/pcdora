@@ -4,7 +4,6 @@ namespace Drupal\pcdora\Plugin\dgi_migrate_alter\spreadsheet;
 
 use Drupal\dgi_migrate_alter\Plugin\MigrationAlterBase;
 use Drupal\dgi_migrate_alter\Plugin\MigrationAlterInterface;
-use Drupal\Core\Annotation\Translation;
 
 /**
  * Alter for dssi_node migration.
