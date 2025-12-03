@@ -3,5 +3,8 @@
     "description": "Customizations for PC",
     "type": "drupal-module",
     "license": "GPL-3.0-only",
-    "require": {}
+    "require": {
+        "discoverygarden/dgi_standard_oai": "^1.4",
+        "drupal/rest_oai_pmh": "dev-patch/incremental as 2.x-dev"
+    }
 }
