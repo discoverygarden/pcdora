@@ -7,14 +7,13 @@
  * Usage: drush php:script delete_media_file.php "fid1,fid2,fid3"
  */
 
-
 use Drupal\file\Entity\File;
 
 $utils = \Drupal::service('islandora.utils');
 
 // Get command line arguments
 // $extra is used by drush scr command
-// For drush php:script, use $_SERVER['argv']
+// For drush php:script, use $_SERVER['argv'].
 $input = $extra[0] ?? $_SERVER['argv'][1] ?? '';
 
 if (empty($input)) {
