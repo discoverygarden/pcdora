@@ -7,14 +7,15 @@
  * Usage: drush php:script delete_media_file.php "fid1,fid2,fid3"
  */
 
-use Drupal\media\Entity\Media;
+
 use Drupal\file\Entity\File;
+
 $utils = \Drupal::service('islandora.utils');
 
 // Get command line arguments
 // $extra is used by drush scr command
 // For drush php:script, use $_SERVER['argv']
-$input = isset($extra[0]) ? $extra[0] : (isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : '');
+$input = $extra[0] ?? $_SERVER['argv'][1] ?? '';
 
 if (empty($input)) {
   echo "Error: No input parameters provided.\n";
@@ -50,10 +51,10 @@ foreach ($fids as $fid) {
       $media->delete();
     }
   }
-    echo "Deleted file ID: " . $file->id() . "\n";
-    $file->delete();
+  echo "Deleted file ID: " . $file->id() . "\n";
+  $file->delete();
 }
 
-  echo "\n";
+echo "\n";
 
 echo "Processing complete.\n";
