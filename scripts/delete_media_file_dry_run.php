@@ -4,7 +4,7 @@
  * @file
  * Script to delete media and associated file.
  *
- * Usage: drush php:script delete_media_file.php "fid1,fid2,fid3"
+ * Usage: drush php:script delete_media_file_dry_run.php "fid1,fid2,fid3"
  */
 
 use Drupal\file\Entity\File;
@@ -18,7 +18,7 @@ $input = $extra[0] ?? $_SERVER['argv'][1] ?? '';
 
 if (empty($input)) {
   echo "Error: No input parameters provided.\n";
-  echo "Usage: drush php:script delete_media_file.php \"fid1,fid2,fid3\"\n";
+  echo "Usage: drush php:script delete_media_file_dry_run.php \"fid1,fid2,fid3\"\n";
   exit(1);
 }
 
@@ -33,7 +33,7 @@ if (empty($fids)) {
   exit(1);
 }
 
-echo "Processing " . count($fids) . " file(s)...\n\n";
+echo "Dry run -- processing " . count($fids) . " file(s)...\n\n";
 
 foreach ($fids as $fid) {
   echo "--- Processing file: {$fid} ---\n";
@@ -50,12 +50,10 @@ foreach ($fids as $fid) {
   }
   foreach ($utils->getReferencingMedia($fid) as $media) {
     if ($media) {
-      echo "Deleted media ID: " . $media->id() . "\n";
-      $media->delete();
+      echo "Dry run - prod run will delete media ID: " . $media->id() . "\n";
     }
   }
-  echo "Deleted file ID: " . $file->id() . "\n";
-  $file->delete();
+  echo "Dry run - prod run will delete file ID: " . $file->id() . "\n";
 }
 
 echo "\n";
