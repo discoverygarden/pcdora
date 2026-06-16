@@ -12,3 +12,12 @@ function pcdora_preprocess_node__islandora_object(&$variables) {
   // Disable right click on video.
   $variables['#attached']['library'][] = 'pcdora/pcdoravideo';
 }
+
+/**
+ * Implements hook_preprocess_hook()
+ *
+ * Removes the download option from the three-dot menu in the video player.
+ */
+function pcdora_preprocess_islandora_file_video(array &$variables): void {
+  $variables['attributes']['controlsList'] = 'nodownload';
+}
